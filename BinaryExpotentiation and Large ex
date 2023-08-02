@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+
+const long long int M=1e18+7;
+
+int binExp(ll a,ll b)  ///this a normal function from luv here we use concept of bit
+{
+   // a=binExp(2,1024);
+    int ans=1;
+
+    while(b>0)
+    {
+        if(b&1)
+        {
+            ans=(ans*1LL*a)%M;
+        }
+        a=(a*1LL*a)%M;
+        b>>=1;
+    }
+    return ans;
+}
+
+int binMultiply(ll a,ll b) ///large expotention for base and modulo
+{
+    int ans=0;
+    while(b>0)
+    {
+        if(b&1)
+        {
+            ans=(ans+a)%M;
+
+        }
+        a=(a+a)%M;
+        b>>=1;
+    }
+    return ans;
+}
+
+
+
+ll power(ll base,ll n ) ///this is from wrong submission
+{
+    ll res=1;
+
+    while(n)
+    {
+        if(n&1)
+        {
+            res*=base;
+            n--;
+        }
+        else{
+            base*=base;
+            n=n/2;
+        }
+    }
+    return res;
+}
+
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+
+   // cout<<power(a,b)<<endl;
+   int res=binExp(a,b);
+   cout<<res<<endl;
+
+  return 0;
+
+}
+
